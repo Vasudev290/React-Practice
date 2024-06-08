@@ -1,0 +1,51 @@
+import React from "react";
+import { render } from "react-dom";
+class Product extends React.Component {
+    state = {
+        product: {
+               Name: "Nothing Phone (2a) 5G",
+               img:"https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/4/g/g/-original-imahfaxfwbz84k6z.jpeg?q=70&crop=false",
+               price: 27999,
+               qty: 1
+        }
+    }
+    decHandler = () => {
+        this.setState({product:{...this.state.product,qty:this.state.product.qty -1}})
+    }
+    incHandler = () => {
+        this.setState({product:{...this.state.product,qty:this.state.product.qty +1}})
+    }
+    render() {
+        return <div>
+             <div className="container mt-5">
+                <div className="row">
+                    <div className="col-md-7">
+                        <div className="table table-hover">
+                            <thead className="bg-primary">
+                                <tr>
+                                <th>Name</th>
+                                <th>Image</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <td>{this.state.product.Name}</td>
+                                <td><img src={this.state.product.img} height="125px"/></td>
+                                <td>{this.state.product.price}</td>
+                                <td>{ this.state.product.qty ? <>
+                                    <i class="fa-solid fa-circle-minus" onClick={this.decHandler}></i>
+                                    </> : null }
+                                {this.state.product.qty}
+                                <i class="fa-solid fa-circle-plus" onClick={this.incHandler}></i></td>
+                                <td>{this.state.product.qty * this.state.product.price}</td>
+                            </tbody>
+                        </div>
+                    </div>
+                </div>
+             </div>
+        </div>
+    }
+}
+export default Product;
